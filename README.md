@@ -2,6 +2,8 @@
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://clpueahb5dm2qwgvpnj3j4.streamlit.app/)
 
+**Live Deployment URL**: [https://clpueahb5dm2qwgvpnj3j4.streamlit.app/](https://clpueahb5dm2qwgvpnj3j4.streamlit.app/)
+
 Sentinel AI is a modern, high-performance, AI-native Security Operations Center (SOC) dashboard. It transforms complex, multi-stage cybersecurity telemetry into clean, actionable, and visually rich security narratives.
 
 Designed to avoid the visual clutter of traditional dashboards, Sentinel AI prioritizes analyst efficiency through a polished dark-mode interface, glassmorphism containers, animated network topologies, and a context-aware AI Security Copilot.
