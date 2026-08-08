@@ -1,0 +1,8 @@
+# Local system generated artifacts
+.gemini/
+*.log
+scratch/
+.idea/
+.vscode/
+node_modules/
+__pycache__/

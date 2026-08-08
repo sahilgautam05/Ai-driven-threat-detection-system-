@@ -1,0 +1,19 @@
+{
+  "name": "sentinel-ai-soc",
+  "version": "1.0.0",
+  "description": "Sentinel AI - Futuristic Security Operations Center Dashboard",
+  "main": "app.js",
+  "scripts": {
+    "dev": "npx -y live-server . --port=8000 --no-browser"
+  },
+  "keywords": [
+    "cybersecurity",
+    "threat-detection",
+    "sentinel",
+    "dashboard"
+  ],
+  "author": "Antigravity Dev Team",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

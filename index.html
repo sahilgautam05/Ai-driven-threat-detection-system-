@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentinel AI - Cyber Threat Intelligence & Ops Platform</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- App Wrapper Grid -->
+  <div class="app-container" id="appWrapper">
+
+    <!-- 1. LEFT SIDEBAR NAVIGATION -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-container" id="logoClick">
+          <div class="logo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <span class="logo-text">Sentinel AI</span>
+        </div>
+        <button class="sidebar-toggle-btn" id="sidebarToggle" title="Toggle Sidebar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="11 17 6 12 11 7"></polyline>
+            <polyline points="18 17 13 12 18 7"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="nav-item active" data-view="overview" id="nav-overview">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span class="nav-text">Overview</span>
+        </a>
+        <a class="nav-item" data-view="detections" id="nav-detections">
+          <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+          <span class="nav-text">Threat Detection</span>
+        </a>
+        <a class="nav-item" data-view="incidents" id="nav-incidents">
+          <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+          <span class="nav-text">Incidents Workbench</span>
+        </a>
+        <a class="nav-item" data-view="copilot" id="nav-copilot">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          <span class="nav-text">Sentinel Copilot</span>
+        </a>
+        <a class="nav-item" data-view="assets" id="nav-assets">
+          <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+          <span class="nav-text">Assets Intelligence</span>
+        </a>
+        <a class="nav-item" data-view="network" id="nav-network">
+          <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
+          <span class="nav-text">Network Map</span>
+        </a>
+        <a class="nav-item" data-view="rules" id="nav-rules">
+          <svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+          <span class="nav-text">Detection Rules</span>
+        </a>
+        <a class="nav-item" data-view="intel" id="nav-intel">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          <span class="nav-text">Threat Intel</span>
+        </a>
+        <a class="nav-item" data-view="reports" id="nav-reports">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          <span class="nav-text">Reports</span>
+        </a>
+        <a class="nav-item" data-view="audit" id="nav-audit">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span class="nav-text">Audit Logs</span>
+        </a>
+        <a class="nav-item" data-view="settings" id="nav-settings">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          <span class="nav-text">Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="org-selector" id="orgSelector">
+          <span class="org-name" id="activeOrgName">Acme Corp</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 2. TOPBAR HEADER -->
+    <header class="header">
+      <div class="header-left">
+        <div class="breadcrumbs">
+          <span id="breadcrumb-root">Sentinel AI</span>
+          <span class="breadcrumb-separator">/</span>
+          <span class="breadcrumb-current" id="breadcrumb-view">Overview</span>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- Global Search Button -->
+        <button class="global-search-trigger" id="globalSearchBtn">
+          <span style="display:flex; align-items:center; gap:8px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            Search logs, alerts...
+          </span>
+          <kbd class="search-shortcut">Ctrl+K</kbd>
+        </button>
+
+        <!-- Role Selector Badge -->
+        <div class="role-badge-container" id="roleBadgeBtn">
+          <div class="role-dot" id="roleBadgeDot"></div>
+          <span class="role-label" id="roleBadgeLabel">Analyst</span>
+        </div>
+
+        <!-- Notification Bell -->
+        <button class="notif-button" id="notifBtn" title="Alert Notifications">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+          <div class="notif-badge" id="notifBadge"></div>
+        </button>
+      </div>
+
+      <!-- Real-Time Alerts Dropdown -->
+      <div class="notif-dropdown" id="notifDropdown">
+        <div class="notif-header">
+          <span style="font-weight:600; font-size:0.9rem;">Security Notifications</span>
+          <button class="btn-secondary" style="font-size:0.75rem; padding:2px 8px;" id="clearAllNotifs">Dismiss All</button>
+        </div>
+        <div id="notifDropdownList" class="notif-list-container">
+          <!-- Populated by notifications.js -->
+        </div>
+      </div>
+    </header>
+
+    <!-- 3. MAIN WORKSPACE CONTAINER -->
+    <main class="main-content">
+
+      <!-- ================= OVERVIEW VIEW ================= -->
+      <section class="workspace-view active" id="overview-view">
+        <div class="dashboard-grid">
+          <!-- Security Health Card -->
+          <div class="glass-card dashboard-widget-health purple-glow">
+            <div class="card-header">
+              <span class="card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Security Posture
+              </span>
+            </div>
+            <div class="health-score-container">
+              <div class="svg-ring-container">
+                <svg width="120" height="120">
+                  <circle class="svg-ring-bg" cx="60" cy="60" r="50"></circle>
+                  <circle class="svg-ring-active" id="healthCircleRing" cx="60" cy="60" r="50" stroke-dasharray="314.16" stroke-dashoffset="0"></circle>
+                </svg>
+                <div class="health-score-value" id="healthScoreText">82</div>
+              </div>
+              <div class="health-trend trend-up" id="healthTrendText">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                +4.2% from last week
+              </div>
+            </div>
+            <div class="ai-brief-card">
+              <span>Sentinel Copilot:</span> Active incident <strong>#INC-2048</strong> involves database RCE and S3 data egress, depressing score by 12 points. Core services remain isolated.
+            </div>
+          </div>
+
+          <!-- Threat stats counter widgets -->
+          <div class="dashboard-widget-stats" id="statsWidgets">
+            <!-- Populated dynamically by dashboard.js -->
+          </div>
+        </div>
+
+        <div class="dashboard-middle-row">
+          <!-- Dynamic Threat Timeline SVG -->
+          <div class="glass-card">
+            <div class="card-header">
+              <span class="card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                Threat Telemetry Timeline (Last 24h)
+              </span>
+              <div class="filter-pills" id="timelineRangeSelector">
+                <span class="filter-pill active" data-range="24h">24 Hours</span>
+                <span class="filter-pill" data-range="7d">7 Days</span>
+                <span class="filter-pill" data-range="30d">30 Days</span>
+              </div>
+            </div>
+            <div class="timeline-svg-container" id="timelineChartContainer">
+              <svg id="timelineChartSvg" width="100%" height="100%"></svg>
+              <div class="timeline-tooltip" id="timelineChartTooltip"></div>
+            </div>
+          </div>
+
+          <!-- Threat distribution list -->
+          <div class="glass-card">
+            <div class="card-header">
+              <span class="card-title">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                Threat Category Distribution
+              </span>
+            </div>
+            <div class="distribution-bars" id="distributionBarsContainer">
+              <!-- Populated by dashboard.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= THREAT DETECTION VIEW ================= -->
+      <section class="workspace-view" id="detections-view">
+        <div class="workbench-container">
+          <div class="filter-bar">
+            <div class="filter-pills" id="detectionSeverityFilters">
+              <span class="filter-pill active" data-severity="All">All Severities</span>
+              <span class="filter-pill" data-severity="Critical">Critical</span>
+              <span class="filter-pill" data-severity="High">High</span>
+              <span class="filter-pill" data-severity="Medium">Medium</span>
+              <span class="filter-pill" data-severity="Low">Low</span>
+            </div>
+            <div class="actions-row">
+              <div class="search-input-wrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" class="table-search-input" id="detectionSearch" placeholder="Search detections (e.g. AD, srv)...">
+              </div>
+              <button class="btn-secondary" id="exportDetectionsBtn">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Export CSV
+              </button>
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="sentinel-table" id="detectionsTable">
+              <thead>
+                <tr>
+                  <th style="width: 40px;"><input type="checkbox" id="selectAllDetections"></th>
+                  <th>ID</th>
+                  <th>Timestamp</th>
+                  <th>Severity</th>
+                  <th>Category</th>
+                  <th>Affected Asset</th>
+                  <th>User Entity</th>
+                  <th>Risk Score</th>
+                  <th>Confidence</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="detectionsTableBody">
+                <!-- Populated by detections.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= INCIDENTS WORKSPACE ================= -->
+      <section class="workspace-view" id="incidents-view">
+        <div class="incident-header-panel">
+          <div class="incident-title-block">
+            <div class="incident-meta-tags">
+              <span class="incident-id-tag" id="incidentViewId">INC-2048</span>
+              <span class="badge critical" id="incidentViewSeverity">Critical</span>
+              <span class="badge active" id="incidentViewStatus">Active</span>
+              <span class="score-indicator critical" id="incidentViewRisk">Risk Index: 94</span>
+            </div>
+            <h2 class="incident-title-text" id="incidentViewTitle">Multi-Stage Database Compromise & Exfiltration Campaign</h2>
+          </div>
+          <div class="incident-actions">
+            <button class="btn-primary" id="isolateAssetsBtn">Isolate Hosts</button>
+            <button class="btn-secondary" id="assignIncidentBtn">Assign Analyst</button>
+            <button class="btn-secondary" id="resolveIncidentBtn">Resolve Incident</button>
+          </div>
+        </div>
+
+        <div class="sentinel-tabs">
+          <button class="tab-btn active" data-tab="summary">Summary</button>
+          <button class="tab-btn" data-tab="timeline">Attack Timeline</button>
+          <button class="tab-btn" data-tab="evidence">Evidence Vault</button>
+          <button class="tab-btn" data-tab="entities">Entities Involved</button>
+          <button class="tab-btn" data-tab="ai-analysis">AI Logic Explanation</button>
+          <button class="tab-btn" data-tab="activity">Journal & Notes</button>
+        </div>
+
+        <!-- TAB CONTENT 1: Summary -->
+        <div class="tab-panel active" id="tab-summary">
+          <div class="summary-grid">
+            <div class="glass-card">
+              <div class="summary-detail-block">
+                <h4>EXECUTIVE SUMMARY / WHAT HAPPENED</h4>
+                <p id="inc-summary-what">Analyzing incident telemetry...</p>
+              </div>
+              <div class="summary-detail-block">
+                <h4>SECURITY COMPLIANCE & BUSINESS IMPACT</h4>
+                <p id="inc-summary-why">Analyzing business impact...</p>
+              </div>
+              <div class="summary-detail-block">
+                <h4>AFFECTED INFRASTRUCTURE LAYER</h4>
+                <p id="inc-summary-systems">Database, cloud assets.</p>
+              </div>
+              <div class="summary-detail-block">
+                <h4>OBSERVED FORENSIC PROOFS</h4>
+                <p id="inc-summary-evidence">Analyzing log trails...</p>
+              </div>
+            </div>
+            <div class="incident-sidebar-info">
+              <div class="glass-card">
+                <div class="card-header">
+                  <span class="card-title">Quick Attributes</span>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:14px;">
+                  <div class="info-item">
+                    <label>First Event Registered</label>
+                    <span id="inc-info-first">08/08/2026 11:22:04</span>
+                  </div>
+                  <div class="info-item">
+                    <label>Last Log Timestamp</label>
+                    <span id="inc-info-last">08/08/2026 11:34:50</span>
+                  </div>
+                  <div class="info-item">
+                    <label>Assigned Lead Investigator</label>
+                    <span id="inc-info-analyst">Sarah Connor</span>
+                  </div>
+                  <div class="info-item">
+                    <label>Containment Status</label>
+                    <span id="inc-info-status" class="badge warning" style="margin-top:4px;">Not Contained</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="glass-card purple-glow">
+                <div class="card-header">
+                  <span class="card-title" style="color:var(--accent-purple-glowing);">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                    Recommended Actions
+                  </span>
+                </div>
+                <ul id="inc-recommendations" style="padding-left:16px; font-size:0.85rem; line-height:1.6; display:flex; flex-direction:column; gap:8px;">
+                  <!-- Populated dynamically -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 2: Timeline -->
+        <div class="tab-panel" id="tab-timeline">
+          <div class="glass-card">
+            <div class="card-header">
+              <span class="card-title">Chronological Attack Chain</span>
+              <span style="font-size:0.8rem; color:var(--text-secondary);">Click any element to expand forensic telemetry details</span>
+            </div>
+            <div class="vertical-timeline" id="incidentTimelineContainer">
+              <!-- Populated by investigation.js -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 3: Evidence -->
+        <div class="tab-panel" id="tab-evidence">
+          <div class="glass-card">
+            <div class="card-header">
+              <span class="card-title">Indicators & Forensic Objects</span>
+            </div>
+            <div class="evidence-list">
+              <div class="evidence-row" style="font-weight:600; border:none; background:transparent; color:var(--text-secondary); font-size:0.8rem;">
+                <div>INDICATOR TYPE</div>
+                <div>VALUE</div>
+                <div>CLASSIFICATION</div>
+                <div>CONTEXT SUMMARY</div>
+              </div>
+              <div id="incidentEvidenceList">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 4: Entities -->
+        <div class="tab-panel" id="tab-entities">
+          <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:20px;" id="incidentEntitiesGrid">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 5: AI Logic -->
+        <div class="tab-panel" id="tab-ai-analysis">
+          <div class="glass-card purple-glow" style="display:flex; flex-direction:column; gap:20px;">
+            <div>
+              <h3 style="font-size:1.1rem; color:var(--accent-purple-glowing); margin-bottom:8px;">AI Attribution Inference</h3>
+              <p id="inc-ai-summary" style="line-height:1.6; font-size:0.925rem;"></p>
+            </div>
+            <div style="background:rgba(0,0,0,0.2); padding:16px; border-radius:8px; border-left:4px solid var(--accent-purple);">
+              <h4 style="font-size:0.85rem; text-transform:uppercase; margin-bottom:6px; color:var(--text-secondary);">Attribution Confidence Metrics</h4>
+              <ul style="padding-left:16px; font-size:0.85rem; display:flex; flex-direction:column; gap:6px;">
+                <li><strong>Correlation Confidence:</strong> 96% (System matched identical credential footprints traversing from source IP to database system)</li>
+                <li><strong>Known Actor Signature Alignment:</strong> 82% (Behavior resembles Cozy Bear / APT-29 database access procedures)</li>
+                <li><strong>Anomaly Score Deviation:</strong> 9.4σ (Normal asset activity index exceeded by 9.4 standard deviations)</li>
+              </ul>
+            </div>
+            <div>
+              <h3 style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:6px;">Known Uncertainties & Exclusions</h3>
+              <p id="inc-ai-uncertainty" style="line-height:1.5; font-size:0.875rem; color:var(--text-secondary);"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT 6: Journal & Activity -->
+        <div class="tab-panel" id="tab-activity">
+          <div class="glass-card" style="display:flex; flex-direction:column; gap:20px;">
+            <div style="display:flex; gap:12px;">
+              <input type="text" class="table-search-input" id="newActivityText" placeholder="Add custom analyst note, response log, or updates..." style="flex:1;">
+              <button class="btn-primary" id="addActivityBtn">Add Entry</button>
+            </div>
+            <div id="incidentActivityLogList" style="display:flex; flex-direction:column; gap:16px;">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= AI SECURITY COPILOT VIEW ================= -->
+      <section class="workspace-view" id="copilot-view">
+        <div class="copilot-container">
+          <!-- Chat interface -->
+          <div class="copilot-chat-pane">
+            <div class="copilot-chat-header">
+              <div class="copilot-ai-logo">
+                <div class="copilot-pulse-indicator"></div>
+                <span style="font-weight:600;">Sentinel Security Copilot</span>
+              </div>
+              <button class="btn-secondary" style="font-size:0.75rem; padding:4px 10px;" id="clearCopilotChatBtn">Reset Chat</button>
+            </div>
+            <div class="copilot-messages" id="copilotChatMessages">
+              <!-- Populated dynamically -->
+            </div>
+            <div class="copilot-input-area">
+              <input type="text" class="copilot-textbox" id="copilotInputBox" placeholder="Ask Sentinel Copilot (e.g., 'Summarize incident INC-2048')...">
+              <button class="copilot-send-btn" id="copilotSendBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Suggested query chips -->
+          <div class="copilot-context-sidebar">
+            <div class="glass-card">
+              <div class="card-header">
+                <span class="card-title">Prompt Templates</span>
+              </div>
+              <div class="suggested-chips">
+                <button class="suggested-chip" data-query="Why was incident INC-2048 detected?">"Why was incident INC-2048 detected?"</button>
+                <button class="suggested-chip" data-query="Summarize this incident and list targets.">"Summarize this incident and list targets."</button>
+                <button class="suggested-chip" data-query="What assets are affected in INC-2048?">"What assets are affected in INC-2048?"</button>
+                <button class="suggested-chip" data-query="Generate an incident compliance report.">"Generate an incident compliance report."</button>
+                <button class="suggested-chip" data-query="What security events appear related?">"What security events appear related?"</button>
+                <button class="suggested-chip" data-query="What should an analyst investigate next?">"What should an analyst investigate next?"</button>
+              </div>
+            </div>
+            <div class="glass-card purple-glow">
+              <h4 style="font-size:0.8rem; text-transform:uppercase; color:var(--text-secondary); margin-bottom:8px;">AI Attribution Confidence</h4>
+              <p style="font-size:0.8rem; line-height:1.4; color:var(--text-secondary);">System references MITRE ATT&CK framework mapping for T1078 (Valid Accounts), T1059 (Command & Script Execution), and T1048 (Exfiltration over Alternative Protocol).</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ASSETS INTELLIGENCE VIEW ================= -->
+      <section class="workspace-view" id="assets-view">
+        <div class="workbench-container" id="assetsListView">
+          <div class="filter-bar">
+            <div class="filter-pills" id="assetCategoryFilters">
+              <span class="filter-pill active" data-category="All">All Assets</span>
+              <span class="filter-pill" data-category="Servers">Servers</span>
+              <span class="filter-pill" data-category="Workstations">Workstations</span>
+              <span class="filter-pill" data-category="Cloud Resources">Cloud Storage</span>
+              <span class="filter-pill" data-category="Applications">Apps & APIs</span>
+              <span class="filter-pill" data-category="Databases">Databases</span>
+              <span class="filter-pill" data-category="Network Devices">Network Devices</span>
+              <span class="filter-pill" data-category="User Identities">Identities</span>
+            </div>
+            <div class="search-input-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" class="table-search-input" id="assetSearch" placeholder="Filter assets by name/IP...">
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:20px;" id="assetsCardsGrid">
+            <!-- Populated dynamically by assets.js -->
+          </div>
+        </div>
+
+        <!-- Asset Detail Workpane (nested inside Assets Page) -->
+        <div class="workbench-container" id="assetDetailView" style="display:none;">
+          <button class="btn-secondary" style="width:fit-content; margin-bottom:12px;" id="backToAssetsListBtn">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            Back to Assets
+          </button>
+          
+          <div class="dashboard-grid">
+            <div class="glass-card" style="grid-column: span 2;">
+              <div class="card-header">
+                <span class="card-title" id="detailAssetName">srv-prod-db-01</span>
+                <span class="badge critical" id="detailAssetHealth">Critical</span>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:10px; font-size:0.9rem;">
+                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-secondary);">Asset Class:</span><span id="detailAssetType">Database Server</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-secondary);">IP Address:</span><span id="detailAssetIp">10.100.12.45</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-secondary);">OS / Build:</span><span id="detailAssetOs">Ubuntu 22.04 LTS</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-secondary);">Cloud Environment:</span><span id="detailAssetCloud">AWS (us-east-1)</span></div>
+                <div style="display:flex; justify-content:space-between;"><span style="color:var(--text-secondary);">Business Importance:</span><span id="detailAssetImportance">Tier-1 Critical</span></div>
+              </div>
+            </div>
+
+            <div class="glass-card" style="grid-column: span 2; display:flex; flex-direction:column; justify-content:space-between;">
+              <div class="card-header">
+                <span class="card-title">Vulnerability & Risk Matrix</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:24px;">
+                <div style="font-size:3rem; font-weight:700; color:var(--status-critical); font-family:var(--font-mono);" id="detailAssetRisk">89</div>
+                <div style="font-size:0.85rem; line-height:1.4; color:var(--text-secondary);">
+                  This asset's risk score was elevated dynamically based on <strong>4 concurrent active alerts</strong> and <strong>1 pending critical incident link</strong>. Baseline score is 12.
+                </div>
+              </div>
+              <button class="btn-primary" style="margin-top:16px; width:100%; justify-content:center;" id="isolateAssetDetailBtn">Initiate Firewall Isolation</button>
+            </div>
+          </div>
+
+          <div class="glass-card">
+            <div class="card-header">
+              <span class="card-title">Security Event Logs</span>
+            </div>
+            <div class="table-wrapper">
+              <table class="sentinel-table">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Category</th>
+                    <th>Risk</th>
+                    <th>Detection Log Summary</th>
+                  </tr>
+                </thead>
+                <tbody id="detailAssetLogsBody">
+                  <!-- Populated by asset detail view logic -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= NETWORK VISUALIZATION VIEW ================= -->
+      <section class="workspace-view" id="network-view">
+        <div class="network-workspace">
+          <div class="network-canvas-container">
+            <canvas class="network-canvas" id="networkCanvas"></canvas>
+            <div class="network-instructions">
+              <strong>Interactive Topology Map</strong>: Drag nodes to rearrange. Hover to highlight connections. Click to inspect details.
+            </div>
+          </div>
+
+          <div class="network-inspector-sidebar">
+            <div class="glass-card" id="networkInspectorCard">
+              <div class="card-header">
+                <span class="card-title">Node Inspector</span>
+              </div>
+              <div id="networkNodeInspectorBody" style="display:flex; flex-direction:column; gap:12px; font-size:0.85rem;">
+                <div style="text-align:center; color:var(--text-secondary); padding:20px 0;">Click on a topology node to audit routing and risk levels.</div>
+              </div>
+            </div>
+            <div class="glass-card purple-glow">
+              <div class="card-header">
+                <span class="card-title">Telemetry Legend</span>
+              </div>
+              <div style="font-size:0.8rem; display:flex; flex-direction:column; gap:8px;">
+                <div style="display:flex; align-items:center; gap:8px;"><span style="width:10px; height:10px; border-radius:50%; background:var(--status-critical); display:inline-block;"></span> Critical Compromise Wave</div>
+                <div style="display:flex; align-items:center; gap:8px;"><span style="width:10px; height:10px; border-radius:50%; background:var(--status-high); display:inline-block;"></span> Active Warning Path</div>
+                <div style="display:flex; align-items:center; gap:8px;"><span style="width:10px; height:10px; border-radius:50%; background:var(--status-safe); display:inline-block;"></span> Secured Active Link</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= DETECTION RULES VIEW ================= -->
+      <section class="workspace-view" id="rules-view">
+        <div class="workbench-container">
+          <div class="filter-bar">
+            <div style="font-size:0.9rem; color:var(--text-secondary);">Active Detection Rules Database</div>
+            <button class="btn-primary" id="createNewRuleBtn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Create Rule
+            </button>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="sentinel-table">
+              <thead>
+                <tr>
+                  <th>Rule Name</th>
+                  <th>Category</th>
+                  <th>Severity</th>
+                  <th>Triggers</th>
+                  <th>Last Fired</th>
+                  <th>Author</th>
+                  <th>Updated</th>
+                  <th>Status</th>
+                  <th style="width: 80px;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="rulesTableBody">
+                <!-- Populated dynamically by rules.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= THREAT INTELLIGENCE VIEW ================= -->
+      <section class="workspace-view" id="intel-view">
+        <div class="workbench-container">
+          <div class="filter-bar">
+            <div style="font-size:0.9rem; color:var(--text-secondary);">Contextual Reputation & malicious indicators</div>
+            <div class="search-input-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" class="table-search-input" id="intelSearch" placeholder="Search IP, hash, domain...">
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="sentinel-table">
+              <thead>
+                <tr>
+                  <th>Indicator</th>
+                  <th>Type</th>
+                  <th>Reputation</th>
+                  <th>Threat Intelligence Category</th>
+                  <th>Confidence</th>
+                  <th>Related Actor</th>
+                  <th>Source Feed</th>
+                </tr>
+              </thead>
+              <tbody id="intelTableBody">
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= REPORTS VIEW ================= -->
+      <section class="workspace-view" id="reports-view">
+        <div class="dashboard-grid">
+          <div class="glass-card" style="display:flex; flex-direction:column; justify-content:space-between; height:180px;">
+            <div>
+              <h3 style="font-size:1rem; font-weight:600; margin-bottom:8px;">Daily SOC Security Summary</h3>
+              <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.4;">Automated report tracking all ingested events, security trends, health variations, and active threats in the last 24h.</p>
+            </div>
+            <button class="btn-primary" style="width:fit-content;" data-report-type="daily" id="genReportDaily">Generate Summary</button>
+          </div>
+
+          <div class="glass-card" style="display:flex; flex-direction:column; justify-content:space-between; height:180px;">
+            <div>
+              <h3 style="font-size:1rem; font-weight:600; margin-bottom:8px;">Executive Threat Briefing</h3>
+              <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.4;">Executive-level summary of risk matrices, actor attribution, security posture changes, and recommendations.</p>
+            </div>
+            <button class="btn-primary" style="width:fit-content;" data-report-type="exec" id="genReportExec">Generate Briefing</button>
+          </div>
+
+          <div class="glass-card" style="display:flex; flex-direction:column; justify-content:space-between; height:180px;">
+            <div>
+              <h3 style="font-size:1rem; font-weight:600; margin-bottom:8px;">Incident Analysis Report</h3>
+              <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.4;">Deep-dive audit report of incident timeline, exfiltrated nodes, root cause analysis, and isolation rules.</p>
+            </div>
+            <button class="btn-primary" style="width:fit-content;" data-report-type="incident" id="genReportIncident">Audit Report</button>
+          </div>
+
+          <div class="glass-card" style="display:flex; flex-direction:column; justify-content:space-between; height:180px;">
+            <div>
+              <h3 style="font-size:1rem; font-weight:600; margin-bottom:8px;">Regulatory Compliance Audit</h3>
+              <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.4;">Audit report validating controls mapped to NIST, ISO27001, and SOC2 Framework metrics.</p>
+            </div>
+            <button class="btn-primary" style="width:fit-content;" data-report-type="compliance" id="genReportCompliance">Run Audit</button>
+          </div>
+        </div>
+
+        <!-- Rendered Report Output Workspace -->
+        <div class="glass-card" id="generatedReportOutput" style="display:none; margin-top:24px;">
+          <div class="card-header" style="border-bottom:1px solid var(--border-color); padding-bottom:12px;">
+            <div style="display:flex; flex-direction:column; gap:4px;">
+              <span class="card-title" id="reportTitleText">Executive Threat Briefing</span>
+              <span style="font-size:0.75rem; color:var(--text-secondary);" id="reportMetaText">Generated on 08/08/2026 by Sentinel Copilot</span>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn-secondary" id="printReportBtn">Print Report</button>
+              <button class="btn-secondary" id="closeReportBtn">Close Preview</button>
+            </div>
+          </div>
+          <div id="reportDocumentContent" style="padding:20px 0; font-size:0.925rem; line-height:1.6;">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= AUDIT LOGS VIEW ================= -->
+      <section class="workspace-view" id="audit-view">
+        <div class="workbench-container">
+          <div class="filter-bar">
+            <div style="font-size:0.9rem; color:var(--text-secondary);">User Action Audit Trail</div>
+            <div class="search-input-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" class="table-search-input" id="auditLogSearch" placeholder="Search audit actions...">
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="sentinel-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Analyst / Actor</th>
+                  <th>System Role</th>
+                  <th>Action Log</th>
+                  <th>Target Component / Resource</th>
+                </tr>
+              </thead>
+              <tbody id="auditLogsTableBody">
+                <!-- Populated dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SETTINGS VIEW ================= -->
+      <section class="workspace-view" id="settings-view">
+        <div class="summary-grid">
+          <div class="glass-card" style="display:flex; flex-direction:column; gap:20px;">
+            <h3 style="font-size:1.1rem; font-weight:600; border-bottom:1px solid var(--border-color); padding-bottom:10px;">Security Operations Profile</h3>
+            
+            <div class="rule-form-group">
+              <label>Default Analyst Persona Role</label>
+              <select class="rule-form-select" id="settingsRoleSelector">
+                <option value="Analyst">Threat Analyst (Sarah Connor)</option>
+                <option value="Admin">SOC Administrator (System Master)</option>
+                <option value="Auditor">Compliance Auditor (External Auditor)</option>
+              </select>
+              <p style="font-size:0.75rem; color:var(--text-secondary); margin-top:6px;">Switching changes accessibility and changes audit logging classifications.</p>
+            </div>
+
+            <div class="rule-form-group">
+              <label>Default Threat Classification Engine</label>
+              <select class="rule-form-select">
+                <option value="sentinel-copilot-v2">Sentinel Copilot Intelligence Hub (Active)</option>
+                <option value="local-heuristic">Heuristic Signature Matching</option>
+              </select>
+            </div>
+
+            <div class="rule-form-group">
+              <label>Active Workspaces Tenant</label>
+              <select class="rule-form-select" id="settingsOrgSelector">
+                <option value="Sentinel Global Security">Sentinel Global Security</option>
+                <option value="Acme Corp Operations">Acme Corp Operations</option>
+                <option value="Sector-7 Security Hub">Sector-7 Security Hub</option>
+              </select>
+            </div>
+
+            <button class="btn-primary" id="saveSettingsBtn" style="width:fit-content;">Save Configurations</button>
+          </div>
+
+          <div class="glass-card">
+            <h3 style="font-size:1.1rem; font-weight:600; border-bottom:1px solid var(--border-color); padding-bottom:10px;">Session Information</h3>
+            <div style="display:flex; flex-direction:column; gap:12px; font-size:0.875rem; margin-top:10px;">
+              <div><span style="color:var(--text-secondary);">MFA Status:</span> <strong style="color:var(--status-safe);">Enforced (Duo Push)</strong></div>
+              <div><span style="color:var(--text-secondary);">IP Location:</span> <strong>10.200.4.102 (HQ Wired Subnet)</strong></div>
+              <div><span style="color:var(--text-secondary);">Session Expiry:</span> <strong>7h 48m remaining</strong></div>
+              <div><span style="color:var(--text-secondary);">Platform API version:</span> <strong>v2.8.4-stable-prod</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- 4. RIGHT-SIDE GENERAL INVESTIGATION DETECTIONS DRAWER -->
+    <div class="details-drawer" id="detailsDrawer">
+      <div class="drawer-header">
+        <div class="drawer-title-area">
+          <span class="drawer-id" id="drawerId">DET-2026-101</span>
+          <span class="drawer-title" id="drawerTitle">Anomalous Active Directory Login</span>
+        </div>
+        <button class="close-drawer-btn" id="closeDrawerBtn">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="drawer-body">
+        <div>
+          <span class="drawer-section-title">Telemetry Risk Matrix</span>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="badge critical" id="drawerSeverity">Critical</span>
+            <div style="display:flex; gap:10px;">
+              <span class="score-indicator critical" id="drawerRiskScore">Risk: 92</span>
+              <span class="score-indicator" id="drawerConfidence" style="border-left-color:var(--accent-purple);">Confidence: 98%</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <span class="drawer-section-title">AI Explanation Reasoning</span>
+          <p id="drawerReason" style="line-height:1.5; font-size:0.9rem; color:var(--text-primary);"></p>
+        </div>
+
+        <div>
+          <span class="drawer-section-title">Observed Proof Indicators</span>
+          <div style="background:rgba(0,0,0,0.2); padding:12px; border-radius:6px; border-left:3px solid var(--accent-cyan);">
+            <p id="drawerObserved" style="font-family:var(--font-mono); font-size:0.8rem; line-height:1.4; color:var(--text-primary);"></p>
+          </div>
+        </div>
+
+        <div>
+          <span class="drawer-section-title">AI Inference Analysis</span>
+          <p id="drawerInference" style="font-size:0.875rem; line-height:1.4; color:var(--text-secondary);"></p>
+        </div>
+
+        <div>
+          <span class="drawer-section-title">Workflow Next Steps</span>
+          <p id="drawerNextSteps" style="font-size:0.875rem; line-height:1.4; color:var(--text-secondary);"></p>
+        </div>
+
+        <div style="margin-top:20px; display:flex; gap:10px;">
+          <button class="btn-primary" style="flex:1; justify-content:center;" id="drawerInvestigateBtn">Investigate Incident</button>
+          <button class="btn-secondary" id="drawerResolveBtn">Dismiss / Resolve Alert</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. CRITICAL ACTION RULES DIALOGUE MODAL -->
+    <div class="modal-overlay" id="ruleModal">
+      <div class="command-palette" style="width: 500px;">
+        <div class="drawer-header" style="border-bottom:1px solid var(--border-color);">
+          <span style="font-weight:600;" id="ruleModalTitle">Create Detection Rule</span>
+          <button class="close-drawer-btn" id="closeRuleModalBtn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        <div style="padding: 20px;">
+          <input type="hidden" id="ruleFormId">
+          <div class="rule-form-group">
+            <label for="ruleName">Rule Name</label>
+            <input type="text" class="rule-form-input" id="ruleName" placeholder="e.g. Detect Reverse Shell Execute">
+          </div>
+          <div class="rule-form-group">
+            <label for="ruleCategory">Detection Category</label>
+            <select class="rule-form-select" id="ruleCategory">
+              <option value="Credential abuse">Credential abuse</option>
+              <option value="Suspicious login">Suspicious login</option>
+              <option value="Privilege escalation indicators">Privilege escalation indicators</option>
+              <option value="Data exfiltration indicators">Data exfiltration indicators</option>
+              <option value="Endpoint anomalies">Endpoint anomalies</option>
+              <option value="Phishing">Phishing</option>
+              <option value="Anomalous network activity">Anomalous network activity</option>
+            </select>
+          </div>
+          <div class="rule-form-group">
+            <label for="ruleSeverity">Severity Level</label>
+            <select class="rule-form-select" id="ruleSeverity">
+              <option value="Critical">Critical</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+          <div class="rule-form-group">
+            <label for="ruleDescription">Rule logic / Description</label>
+            <textarea class="rule-form-textarea" id="ruleDescription" placeholder="Write description or Sigma query filter..."></textarea>
+          </div>
+          <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+            <button class="btn-secondary" id="cancelRuleSaveBtn">Cancel</button>
+            <button class="btn-primary" id="saveRuleBtn">Save Detection Rule</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. GLOBAL COMMAND PALETTE MODAL -->
+    <div class="modal-overlay" id="commandPaletteModal">
+      <div class="command-palette">
+        <div class="command-input-wrapper">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" class="command-input" id="commandPaletteInput" placeholder="Type a command or search (e.g. &gt; Go to Assets, INC-2048)...">
+        </div>
+        <div class="command-results" id="commandPaletteResults">
+          <!-- Populated by commands.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+  </div>
+
+  <!-- JavaScript Modules Entry -->
+  <script type="module" src="app.js"></script>
+</body>
+</html>
