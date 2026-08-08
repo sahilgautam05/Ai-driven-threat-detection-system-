@@ -46,11 +46,10 @@ def bundle_html():
     with open(css_path, "r", encoding="utf-8") as f:
         css = f.read()
         
-    # Inline the CSS by replacing the link tag
-    html = re.sub(
-        r'<link rel="stylesheet" href="index.css">',
-        f'<style>\n{css}\n</style>',
-        html
+    # Inline the CSS by replacing the link tag (using literal replace to avoid regex escapes)
+    html = html.replace(
+        '<link rel="stylesheet" href="index.css">',
+        f'<style>\n{css}\n</style>'
     )
     
     # 3. Read and concatenate Javascript modules in dependency order
@@ -91,11 +90,10 @@ def bundle_html():
                 
     combined_js = "\n".join(js_bundle)
     
-    # Inline the JavaScript bundle by replacing the module script tag
-    html = re.sub(
-        r'<script type="module" src="app.js"></script>',
-        f'<script>\n{combined_js}\n</script>',
-        html
+    # Inline the JavaScript bundle by replacing the module script tag (using literal replace)
+    html = html.replace(
+        '<script type="module" src="app.js"></script>',
+        f'<script>\n{combined_js}\n</script>'
     )
     
     return html
